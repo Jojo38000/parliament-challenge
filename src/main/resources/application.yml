@@ -1,0 +1,4 @@
+riksdap-api:
+  host: "http://data.riksdagen.se"
+  members-endpoint: "/personlista/?&utformat=json"
+  speeches-endpoint: "/anforandelista/?anftyp=Nej&utformat=json"
