@@ -23,6 +23,7 @@ public class EnrichedSpeechesController {
   @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
   public Flux<EnrichedSpeech> getAllMergedSpeeches(
       @RequestParam(defaultValue = "10") final int size) {
+    
     return speechMerger
         .getLatest(Math.abs(size))
         .delayElements(Duration.ofMillis(100)); // Fooling around with streams over HTTP
