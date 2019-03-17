@@ -1,10 +1,13 @@
 package com.parliamentchallenge.merger.speech;
 
+import com.parliamentchallenge.merger.provider.parliament.PersonDTO;
+import com.parliamentchallenge.merger.provider.parliament.SpeechDTO;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface ParliamentDataProvider {
 
-  Flux<Speech> getSpeeches(final int numberOfSpeeches);
+  Flux<SpeechDTO> getSpeeches(final int numberOfSpeeches);
 
-  void getMember(final String id);
+  Mono<PersonDTO> getMember(final String id);
 }

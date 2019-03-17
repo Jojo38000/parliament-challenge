@@ -1,7 +1,7 @@
 package com.parliamentchallenge.merger.config;
 
-import com.parliamentchallenge.merger.adapters.rest.MergedSpeechesController;
-import com.parliamentchallenge.merger.adapters.rest.parliament.ParliamentDataProviderImpl;
+import com.parliamentchallenge.merger.adapters.rest.EnrichedSpeechesController;
+import com.parliamentchallenge.merger.provider.parliament.ParliamentDataProviderImpl;
 import com.parliamentchallenge.merger.speech.ParliamentDataProvider;
 import com.parliamentchallenge.merger.speech.SpeechMerger;
 import com.parliamentchallenge.merger.speech.SpeechMergerImpl;
@@ -23,8 +23,8 @@ public class MergerConfig {
   }
 
   @Bean
-  MergedSpeechesController buildSpeechesController(final SpeechMerger speechMerger) {
-    return new MergedSpeechesController(speechMerger);
+  EnrichedSpeechesController buildSpeechesController(final SpeechMerger speechMerger) {
+    return new EnrichedSpeechesController(speechMerger);
   }
 
 }

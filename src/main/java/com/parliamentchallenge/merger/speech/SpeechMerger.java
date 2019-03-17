@@ -4,6 +4,6 @@ import reactor.core.publisher.Flux;
 
 public interface SpeechMerger {
 
-  Flux<MergedSpeech> getLatest(final int numberOfSpeeches);
+  Flux<EnrichedSpeech> getLatest(final int numberOfSpeeches);
 
 }

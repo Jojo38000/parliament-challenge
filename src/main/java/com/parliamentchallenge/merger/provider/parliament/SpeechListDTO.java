@@ -1,18 +1,18 @@
-package com.parliamentchallenge.merger.adapters.rest.parliament;
+package com.parliamentchallenge.merger.provider.parliament;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-public class SpeechListDTO {
+class SpeechListDTO {
 
   @JsonProperty("anforandelista")
   private SpeechList speeches;
 
-  public SpeechList getSpeeches() {
+  SpeechList getSpeeches() {
     return speeches;
   }
 
-  public static class SpeechList {
+  static class SpeechList {
 
     @JsonProperty("@antal")
     private int size;
@@ -20,11 +20,11 @@ public class SpeechListDTO {
     @JsonProperty("anforande")
     private List<SpeechDTO> speechList;
 
-    public int getSize() {
+    int getSize() {
       return size;
     }
 
-    public List<SpeechDTO> getSpeechList() {
+    List<SpeechDTO> getSpeechList() {
       return speechList;
     }
   }

@@ -1,9 +1,9 @@
-package com.parliamentchallenge.merger.adapters.rest.parliament;
+package com.parliamentchallenge.merger.provider.parliament;
 
 import com.parliamentchallenge.merger.speech.ParliamentDataProvider;
-import com.parliamentchallenge.merger.speech.Speech;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public class ParliamentDataProviderImpl implements ParliamentDataProvider {
 
@@ -14,7 +14,7 @@ public class ParliamentDataProviderImpl implements ParliamentDataProvider {
   }
 
   @Override
-  public Flux<Speech> getSpeeches(final int numberOfSpeeches) {
+  public Flux<SpeechDTO> getSpeeches(final int numberOfSpeeches) {
     return webClient.get()
         .uri(uriBuilder -> uriBuilder.path("anforandelista/")
             .queryParam("anftyp", "Nej")
@@ -23,23 +23,18 @@ public class ParliamentDataProviderImpl implements ParliamentDataProvider {
             .build())
         .retrieve()
         .bodyToMono(SpeechListDTO.class)
-        .flatMapIterable(speechListDTO -> speechListDTO.getSpeeches().getSpeechList())
-        .map(this::createSpeech);
-  }
-
-  private Speech createSpeech(final SpeechDTO speechDTO) {
-    final Speech speech = new Speech();
-    speech.setSpeechId(speechDTO.getSpeechId());
-    speech.setTopic(speechDTO.getTopic());
-    speech.setResponseNo(speechDTO.getResponseNo());
-    speech.setLink(speechDTO.getProtocol());
-    speech.setMemberId(speechDTO.getPersonId());
-
-    return speech;
+        .flatMapIterable(speechListDTO -> speechListDTO.getSpeeches().getSpeechList());
   }
 
   @Override
-  public void getMember(final String id) {
-
+  public Mono<PersonDTO> getMember(final String id) {
+    return webClient.get()
+        .uri(uriBuilder -> uriBuilder.path("personlista/")
+            .queryParam("utformat", "json")
+            .queryParam("iid", id)
+            .build())
+        .retrieve()
+        .bodyToMono(PersonListDTO.class)
+        .map(personListDTO -> personListDTO.getPersonList().getPerson());
   }
 }
