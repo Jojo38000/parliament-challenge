@@ -1,15 +1,18 @@
-package com.parliamentchallenge.merger.speech;
+package com.parliamentchallenge.merger.enrichedspeech;
 
-import com.parliamentchallenge.merger.provider.parliament.PersonDTO;
-import com.parliamentchallenge.merger.provider.parliament.SpeechDTO;
+import com.parliamentchallenge.merger.adapters.parliament.PersonDTO;
+import com.parliamentchallenge.merger.adapters.parliament.SpeechDTO;
 import java.net.URL;
+import java.time.LocalDate;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.ResourceSupport;
 
-public class EnrichedSpeech {
+public class EnrichedSpeech extends ResourceSupport {
 
   private final String speechId;
+  private final LocalDate date;
   private final String responseNo;
   private final String topic;
-  private final URL protocol;
   private final String personId;
   private final String firstName;
   private final String lastName;
@@ -19,19 +22,25 @@ public class EnrichedSpeech {
 
   EnrichedSpeech(final SpeechDTO speech, final PersonDTO person) {
     speechId = speech.getSpeechId();
+    date = speech.getDate();
     responseNo = speech.getResponseNo();
     topic = speech.getTopic();
-    protocol = speech.getProtocol();
     personId = speech.getPersonId();
     firstName = person.getFirstName();
     lastName = person.getLastName();
     affiliation = person.getAffiliation();
     constituency = person.getConstituency();
     image = person.getImage();
+
+    this.add(new Link(speech.getProtocol().toString()));
   }
 
   public String getSpeechId() {
     return speechId;
+  }
+
+  public LocalDate getDate() {
+    return date;
   }
 
   public String getResponseNo() {
@@ -40,10 +49,6 @@ public class EnrichedSpeech {
 
   public String getTopic() {
     return topic;
-  }
-
-  public URL getProtocol() {
-    return protocol;
   }
 
   public String getPersonId() {

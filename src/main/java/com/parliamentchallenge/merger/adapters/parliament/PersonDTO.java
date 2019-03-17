@@ -1,4 +1,4 @@
-package com.parliamentchallenge.merger.provider.parliament;
+package com.parliamentchallenge.merger.adapters.parliament;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;

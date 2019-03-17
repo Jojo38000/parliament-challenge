@@ -1,15 +1,15 @@
-package com.parliamentchallenge.merger.speech;
+package com.parliamentchallenge.merger.enrichedspeech;
 
-import com.parliamentchallenge.merger.provider.parliament.PersonDTO;
-import com.parliamentchallenge.merger.provider.parliament.SpeechDTO;
+import com.parliamentchallenge.merger.adapters.parliament.PersonDTO;
+import com.parliamentchallenge.merger.adapters.parliament.SpeechDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public class SpeechMergerImpl implements SpeechMerger {
+public class SpeechEnricherImpl implements SpeechEnricher {
 
   private final ParliamentDataProvider parliamentDataProvider;
 
-  public SpeechMergerImpl(final ParliamentDataProvider parliamentDataProvider) {
+  public SpeechEnricherImpl(final ParliamentDataProvider parliamentDataProvider) {
     this.parliamentDataProvider = parliamentDataProvider;
   }
 

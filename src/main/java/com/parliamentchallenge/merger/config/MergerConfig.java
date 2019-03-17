@@ -1,10 +1,10 @@
 package com.parliamentchallenge.merger.config;
 
+import com.parliamentchallenge.merger.adapters.parliament.ParliamentDataProviderImpl;
 import com.parliamentchallenge.merger.adapters.rest.EnrichedSpeechesController;
-import com.parliamentchallenge.merger.provider.parliament.ParliamentDataProviderImpl;
-import com.parliamentchallenge.merger.speech.ParliamentDataProvider;
-import com.parliamentchallenge.merger.speech.SpeechMerger;
-import com.parliamentchallenge.merger.speech.SpeechMergerImpl;
+import com.parliamentchallenge.merger.enrichedspeech.ParliamentDataProvider;
+import com.parliamentchallenge.merger.enrichedspeech.SpeechEnricher;
+import com.parliamentchallenge.merger.enrichedspeech.SpeechEnricherImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,13 +18,13 @@ public class MergerConfig {
   }
 
   @Bean
-  SpeechMerger buildSpeechMergerService(final ParliamentDataProvider parliamentDataProvider) {
-    return new SpeechMergerImpl(parliamentDataProvider);
+  SpeechEnricher buildSpeechMergerService(final ParliamentDataProvider parliamentDataProvider) {
+    return new SpeechEnricherImpl(parliamentDataProvider);
   }
 
   @Bean
-  EnrichedSpeechesController buildSpeechesController(final SpeechMerger speechMerger) {
-    return new EnrichedSpeechesController(speechMerger);
+  EnrichedSpeechesController buildSpeechesController(final SpeechEnricher speechEnricher) {
+    return new EnrichedSpeechesController(speechEnricher);
   }
 
 }

@@ -1,8 +1,8 @@
-package com.parliamentchallenge.merger.speech;
+package com.parliamentchallenge.merger.enrichedspeech;
 
 import reactor.core.publisher.Flux;
 
-public interface SpeechMerger {
+public interface SpeechEnricher {
 
   Flux<EnrichedSpeech> getLatest(final int numberOfSpeeches);
 

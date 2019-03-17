@@ -1,6 +1,6 @@
-package com.parliamentchallenge.merger.provider.parliament;
+package com.parliamentchallenge.merger.adapters.parliament;
 
-import com.parliamentchallenge.merger.speech.ParliamentDataProvider;
+import com.parliamentchallenge.merger.enrichedspeech.ParliamentDataProvider;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

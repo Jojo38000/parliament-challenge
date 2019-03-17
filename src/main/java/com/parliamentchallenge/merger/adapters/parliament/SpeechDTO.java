@@ -1,12 +1,16 @@
-package com.parliamentchallenge.merger.provider.parliament;
+package com.parliamentchallenge.merger.adapters.parliament;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
+import java.time.LocalDate;
 
 public class SpeechDTO {
 
   @JsonProperty("anforande_id")
   private String speechId;
+
+  @JsonProperty("dok_datum")
+  private LocalDate date;
 
   @JsonProperty("anforande_nummer")
   private String responseNo;
@@ -22,6 +26,10 @@ public class SpeechDTO {
 
   public String getSpeechId() {
     return speechId;
+  }
+
+  public LocalDate getDate() {
+    return date;
   }
 
   public String getResponseNo() {
